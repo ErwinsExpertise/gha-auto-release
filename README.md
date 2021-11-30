@@ -11,8 +11,8 @@ The default upgrade  strategy is set at minor upgrades. You can adjust this by a
 Available options working from v0.0.0
 | String | Type | Outcome |
 |--|--|--|
-| #minor | 0.x.0 | v0.1.0 |
 | #major | x.0.0 | v1.0.0 |
+| #minor | 0.x.0 | v0.1.0 |
 | #patch | 0.0.x | v0.0.1 | 
 
 - Example
