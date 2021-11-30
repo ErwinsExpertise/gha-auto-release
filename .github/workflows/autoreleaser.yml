@@ -1,0 +1,51 @@
+name: "Automatic Releaser"
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Release : v')"
+    outputs:
+      new_tag: ${{ steps.tagger.outputs.new_tag }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+
+    - name: Bump version and push tag
+      id: tagger
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+
+  goreleaser:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Release : v')"
+    needs: create-tag
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      -
+        name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      -
+        name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GORELEASER_CURRENT_TAG: ${{ needs.create-tag.outputs.new_tag }}
