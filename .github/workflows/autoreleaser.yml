@@ -22,7 +22,7 @@ jobs:
 
   create-tag:
     runs-on: ubuntu-latest
-    if: "${{ needs.check-commit.outputs.msg_check }} == 'true'"
+    if: needs.check-commit.outputs.msg_check == 'true'
     needs: check-commit
     outputs:
       new_tag: ${{ steps.tagger.outputs.new_tag }}
