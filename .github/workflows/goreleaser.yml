@@ -2,7 +2,8 @@ name: goreleaser
 
 on:
   create:
-
+    tags:
+    
 permissions:
   contents: write
 
