@@ -25,3 +25,7 @@ Available options working from v0.0.0
 
 - Example
   - git commit -m "Release v1.0.0 #major"
+
+### GoReleaser
+
+For the most part GoReleaser strategies can be added to the workflow as normal.
