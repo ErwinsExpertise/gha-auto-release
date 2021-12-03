@@ -39,6 +39,9 @@ name: "Automatic Releaser"
 
 on:
   push:
+    branches:
+      - main
+      - master
 
 permissions:
   contents: write
