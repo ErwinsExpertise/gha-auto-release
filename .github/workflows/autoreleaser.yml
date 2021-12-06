@@ -71,4 +71,4 @@ jobs:
     name: Release Notification
     steps:
       - run: |
-          echo "{\"text\":\"Terraform : Release https://github.com/vultr/terraform-provider-vultr/releases/tag/${{ needs.create-tag.outputs.new_tag }} \"}"
+          echo "{\"text\":\"Terraform : Release https://github.com/${{ github.repository }}/releases/tag/${{ needs.create-tag.outputs.new_tag }} \"}"
