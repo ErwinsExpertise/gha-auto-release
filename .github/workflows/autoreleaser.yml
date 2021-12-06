@@ -67,7 +67,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release:
     runs-on: ubuntu-latest
-    needs: goreleaser
+    needs: goreleaser create-tag
     name: Release Notification
     steps:
       - run: |
